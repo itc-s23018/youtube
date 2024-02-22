@@ -16,10 +16,14 @@ const Index = () => {
     fetchData()
   }, [])
   return (
-    <div>
+    <div className={styles.body}>
       <h1 className={styles.title}>チャンネル登録者数ランキング</h1>
-      <h2>Z世代が選んだ人気Youtubeチャンネルのランキングです！</h2>
-      <h2>チャンネル名をクリックしたら、チャンネルの詳細が見れます！</h2>
+      <h2 className={styles.subtitle}>
+        Z世代が選んだ人気Youtubeチャンネルのランキングです！
+      </h2>
+      <h2 className={styles.subtitle}>
+        チャンネル名をクリックしたら、チャンネルの詳細が見れます！
+      </h2>
       <ol>
         {channels.map((channel, index) => (
           <li key={channel.id}>
