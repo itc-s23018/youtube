@@ -16,7 +16,7 @@ const Index = () => {
     fetchData()
   }, [])
   return (
-    <div className={styles.body}>
+    <div>
       <h1 className={styles.title}>チャンネル登録者数ランキング</h1>
       <h2 className={styles.subtitle}>
         Z世代が選んだ人気Youtubeチャンネルのランキングです！
@@ -24,9 +24,9 @@ const Index = () => {
       <h2 className={styles.subtitle}>
         チャンネル名をクリックしたら、チャンネルの詳細が見れます！
       </h2>
-      <ol>
+      <ol style={{ listStyleType: 'none' }}>
         {channels.map((channel, index) => (
-          <li key={channel.id}>
+          <li key={channel.id} className={styles.listItem}>
             <img
               src={channel.snippet.thumbnails.default.url}
               alt='Channel Thumbnail'
