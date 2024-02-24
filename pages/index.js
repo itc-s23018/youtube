@@ -15,6 +15,7 @@ const Index = () => {
     }
     fetchData()
   }, [])
+
   return (
     <div>
       <h1 className={styles.title}>チャンネル登録者数ランキング</h1>
@@ -24,15 +25,29 @@ const Index = () => {
       <h2 className={styles.subtitle}>
         チャンネル名をクリックしたら、チャンネルの詳細が見れます！
       </h2>
-      <ol style={{ listStyleType: 'none' }}>
+      <ol className={styles['numbered-list']}>
         {channels.map((channel, index) => (
           <li key={channel.id} className={styles.listItem}>
-            <img
-              src={channel.snippet.thumbnails.default.url}
-              alt='Channel Thumbnail'
-            />
-            <h2>{`${channel.snippet.title}`}</h2>
-            <h2>登録者数: {channel.statistics.subscriberCount} 人</h2>
+            <div className={styles.channelInfo}>
+              <div className={styles.channelRank}>{index + 1}位</div>
+              <div>
+                <img
+                  src={channel.snippet.thumbnails.default.url}
+                  alt='Channel Thumbnail'
+                  className={styles.channelIcon}
+                />
+              </div>
+              <div className={styles.channelDetails}>
+                <h2 className={styles.channelName}>
+                  <a href={`/${channel.id}`} className={styles.channelLink}>
+                    {channel.snippet.title}
+                  </a>
+                </h2>
+                <h2 className={styles.subscriberCount}>
+                  登録者数: {channel.statistics.subscriberCount} 人
+                </h2>
+              </div>
+            </div>
           </li>
         ))}
       </ol>

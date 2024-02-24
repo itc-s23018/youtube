@@ -8,3 +8,64 @@
 }
 
 
+.numbered-list {
+  list-style-type: none;
+  counter-reset: my-counter;
+  padding-right: 200px;
+  padding-left: 0;
+}
+
+.numbered-list li {
+  counter-increment: my-counter;
+  margin-bottom: 20px;
+   padding-bottom: 20px;
+  display: flex;
+   align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+
+
+.channelInfo {
+  display: flex; /* アイコンとテキストを縦並びに */
+  align-items: center; /* 縦方向中央揃え */
+}
+
+.channelRank {
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+
+.channelIcon {
+ width: 150%; 
+ height: 150%; 
+ object-fit: cover;
+ border-radius: 50%;
+ }
+
+.channelDetails {
+  margin-left: 50px; /* アイコンとテキストの間隔を調整 */
+}
+
+.channelName {
+  font-size: 35px; /* チャンネル名のフォントサイズを調整 */
+  font-weight: bold; /* チャンネル名を太字にする */
+}
+
+.channelLink {
+  color: black; 
+  text-decoration: none; 
+  transition: opacity 0.3s; 
+}
+
+.channelLink:hover {
+  opacity: 0.5;
+}
+
+.subscriberCount {
+  font-size: 18px; 
+}
+
