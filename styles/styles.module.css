@@ -7,7 +7,6 @@
   text-align: center;
 }
 
-
 .numbered-list {
   list-style-type: none;
   counter-reset: my-counter;
@@ -17,19 +16,28 @@
 
 .numbered-list li {
   counter-increment: my-counter;
-  margin-bottom: 20px;
-   padding-bottom: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
   display: flex;
-   align-items: center;
+  align-items: center;
   justify-content: center;
   position: relative;
 }
 
-
+.numbered-list li::after {
+  content: '';
+  display: block;
+  width: 50%; /* 下線の幅をセンター配置に */
+  height: 5px;
+  background-color: #ccc; /* 下線の色 */
+  position: absolute;
+  bottom: 0;
+  left: 25%; /* センター配置にするための調整 */
+}
 
 .channelInfo {
-  display: flex; /* アイコンとテキストを縦並びに */
-  align-items: center; /* 縦方向中央揃え */
+  display: flex;
+  align-items: center;
 }
 
 .channelRank {
@@ -38,34 +46,34 @@
   margin-right: 20px;
 }
 
-
 .channelIcon {
- width: 150%; 
- height: 150%; 
- object-fit: cover;
- border-radius: 50%;
- }
+  width: 150%;
+  height: 150%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 .channelDetails {
   margin-left: 50px; /* アイコンとテキストの間隔を調整 */
 }
 
 .channelName {
-  font-size: 35px; /* チャンネル名のフォントサイズを調整 */
-  font-weight: bold; /* チャンネル名を太字にする */
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 10px; /* チャンネル名の下のマージンを追加 */
+}
+
+.subscriberCount {
+  font-size: 18px;
 }
 
 .channelLink {
-  color: black; 
-  text-decoration: none; 
-  transition: opacity 0.3s; 
+  color: black;
+  text-decoration: none;
+  transition: opacity 0.3s;
 }
 
 .channelLink:hover {
   opacity: 0.5;
-}
-
-.subscriberCount {
-  font-size: 18px; 
 }
 

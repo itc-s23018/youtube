@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { fetchChannelData } from 'lib/api'
+import Accordion from 'components/accordion'
 import styles from 'styles/styles.module.css'
 
 const Index = () => {
@@ -16,14 +17,38 @@ const Index = () => {
     fetchData()
   }, [])
 
+  const formatSubscriberCount = count => {
+    if (count < 10000) {
+      return count.toString()
+    } else {
+      const num = Math.floor(count / 10000)
+      return num.toString() + '万人'
+    }
+  }
+
+  const formatViewCount = count => {
+    if (count < 10000) {
+      return count.toString()
+    } else if (count < 100000000) {
+      // 1億未満
+      const num = Math.floor(count / 10000)
+      return num.toString() + '万'
+    } else {
+      const num = Math.floor(count / 100000000) // 億
+      const remainder = Math.floor((count % 100000000) / 10000) // 万
+      if (remainder === 0) {
+        return num.toString() + '億回'
+      } else {
+        return num.toString() + '億' + remainder.toString() + '万回'
+      }
+    }
+  }
+
   return (
     <div>
       <h1 className={styles.title}>チャンネル登録者数ランキング</h1>
       <h2 className={styles.subtitle}>
         Z世代が選んだ人気Youtubeチャンネルのランキングです！
-      </h2>
-      <h2 className={styles.subtitle}>
-        チャンネル名をクリックしたら、チャンネルの詳細が見れます！
       </h2>
       <ol className={styles['numbered-list']}>
         {channels.map((channel, index) => (
@@ -38,14 +63,22 @@ const Index = () => {
                 />
               </div>
               <div className={styles.channelDetails}>
-                <h2 className={styles.channelName}>
-                  <a href={`/${channel.id}`} className={styles.channelLink}>
-                    {channel.snippet.title}
+                <h2 className={styles.channelName}>{channel.snippet.title}</h2>
+                <Accordion heading='チャンネルの詳細情報を見る'>
+                  <a
+                    href={`https://www.youtube.com/${channel.snippet.customUrl}`}
+                    className={styles.channelLink}
+                  >
+                    {channel.snippet.title}のYoutubeチャンネルページをみる
                   </a>
-                </h2>
-                <h2 className={styles.subscriberCount}>
-                  登録者数: {channel.statistics.subscriberCount} 人
-                </h2>
+                  <h2 className={styles.subscriberCount}>
+                    チャンネル登録者:
+                    {formatSubscriberCount(channel.statistics.subscriberCount)}
+                  </h2>
+                  <h2 className={styles.subscriberCount}>
+                    総再生回数: {formatViewCount(channel.statistics.viewCount)}
+                  </h2>
+                </Accordion>
               </div>
             </div>
           </li>
