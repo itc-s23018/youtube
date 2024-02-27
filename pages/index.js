@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import { fetchChannelData } from 'lib/api'
+import { fetchChannelData, getNewVideo } from 'lib/api'
 import Accordion from 'components/accordion'
 import styles from 'styles/styles.module.css'
 
 const Index = () => {
   const [channels, setChannels] = useState([])
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const channelsData = await fetchChannelData()
-        setChannels(channelsData)
+        const channelsWithLatestVideo = await Promise.all(
+          channelsData.map(async channel => {
+            const latestVideoId = await getNewVideo(channel.id)
+            return {
+              ...channel,
+              latestVideoId
+            }
+          })
+        )
+        setChannels(channelsWithLatestVideo)
       } catch (error) {
         console.error('Error:', error)
       }
     }
+
     fetchData()
   }, [])
 
@@ -30,7 +41,6 @@ const Index = () => {
     if (count < 10000) {
       return count.toString()
     } else if (count < 100000000) {
-      // 1億未満
       const num = Math.floor(count / 10000)
       return num.toString() + '万'
     } else {
@@ -72,12 +82,22 @@ const Index = () => {
                     {channel.snippet.title}のYoutubeチャンネルページをみる
                   </a>
                   <h2 className={styles.subscriberCount}>
-                    チャンネル登録者:
+                    チャンネル登録者:{' '}
                     {formatSubscriberCount(channel.statistics.subscriberCount)}
                   </h2>
                   <h2 className={styles.subscriberCount}>
                     総再生回数: {formatViewCount(channel.statistics.viewCount)}
                   </h2>
+                  <h2>最新動画</h2>
+                  {channel.latestVideoId && (
+                    <iframe
+                      width='560'
+                      height='315'
+                      src={`https://www.youtube.com/embed/${channel.latestVideoId}`}
+                      frameBorder='0'
+                      allowFullScreen
+                    />
+                  )}
                 </Accordion>
               </div>
             </div>
@@ -87,4 +107,5 @@ const Index = () => {
     </div>
   )
 }
+
 export default Index
