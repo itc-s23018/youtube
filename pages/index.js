@@ -60,7 +60,7 @@ const Index = () => {
       <h2 className={styles.subtitle}>
         Z世代が選んだ人気Youtubeチャンネルのランキングです！
       </h2>
-      <ol className={styles['numbered-list']}>
+      <ol className={styles['numbered-list']} style={{ paddingBottom: '20px' }}>
         {channels.map((channel, index) => (
           <li key={channel.id} className={styles.listItem}>
             <div className={styles.channelInfo}>

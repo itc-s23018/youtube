@@ -10,8 +10,9 @@
 .numbered-list {
   list-style-type: none;
   counter-reset: my-counter;
-  padding-right: 200px;
+  /*padding-right: 200px;*/
   padding-left: 0;
+  margin: auto;
 }
 
 .numbered-list li {
@@ -27,13 +28,19 @@
 .numbered-list li::after {
   content: '';
   display: block;
-  width: 50%; /* 下線の幅をセンター配置に */
+  width: 50%;
   height: 5px;
-  background-color: #ccc; /* 下線の色 */
+  background-color: #ccc;
   position: absolute;
   bottom: 0;
-  left: 25%; /* センター配置にするための調整 */
+  left: 25%; 
 }
+
+@media (max-width: 768px)
+  .numbered-list {
+    max-width: 400px;
+  }
+
 
 .channelInfo {
   display: flex;
@@ -60,7 +67,6 @@
 .channelName {
   font-size: 35px;
   font-weight: bold;
-  margin-bottom: 10px; /* チャンネル名の下のマージンを追加 */
 }
 
 .subscriberCount {
@@ -68,7 +74,7 @@
 }
 
 .channelLink {
-  color: black;
+  color: green;
   text-decoration: none;
   transition: opacity 0.3s;
 }
