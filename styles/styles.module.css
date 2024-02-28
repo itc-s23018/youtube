@@ -36,11 +36,6 @@
   left: 25%; 
 }
 
-@media (max-width: 768px)
-  .numbered-list {
-    max-width: 400px;
-  }
-
 
 .channelInfo {
   display: flex;

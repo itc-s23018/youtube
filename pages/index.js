@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { fetchChannelData, getNewVideo } from 'lib/api'
+import Head from 'next/head'
+import { GetChannelData, GetNewVideo } from 'lib/api'
 import Accordion from 'components/accordion'
 import styles from 'styles/styles.module.css'
 
@@ -9,10 +10,10 @@ const Index = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const channelsData = await fetchChannelData()
+        const channelsData = await GetChannelData()
         const channelsWithLatestVideo = await Promise.all(
           channelsData.map(async channel => {
-            const latestVideoId = await getNewVideo(channel.id)
+            const latestVideoId = await GetNewVideo(channel.id)
             return {
               ...channel,
               latestVideoId
@@ -56,6 +57,9 @@ const Index = () => {
 
   return (
     <div>
+      <Head>
+        <title>チャンネル登録者数ランキング</title>
+      </Head>
       <h1 className={styles.title}>チャンネル登録者数ランキング</h1>
       <h2 className={styles.subtitle}>
         Z世代が選んだ人気Youtubeチャンネルのランキングです！
