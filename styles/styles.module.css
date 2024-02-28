@@ -56,7 +56,7 @@
 }
 
 .channelDetails {
-  margin-left: 50px; /* アイコンとテキストの間隔を調整 */
+  margin-left: 50px;
 }
 
 .channelName {
@@ -77,4 +77,61 @@
 .channelLink:hover {
   opacity: 0.5;
 }
+
+@media screen and (max-width: 768px) {
+  .channelDetails {
+     position: relative;
+    text-align: center; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+  }
+
+   .channelRank {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px; 
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+
+  .channelIcon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+
+   .channelInfo {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+
+  .channelName {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+
+   .numbered-list li {
+    text-align: center;
+  }
+
+  .numbered-list li::after {
+    left: auto;
+    right: 50%;
+    transform: translateX(50%)
+  }
+
+   .youtubePlayer {
+    width: 300px;
+    height: 169px;
+  }
+}
+
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Head from 'next/head'
 import { GetChannelData, GetNewVideo } from 'lib/api'
+import Meta from 'components/meta'
 import Accordion from 'components/accordion'
 import styles from 'styles/styles.module.css'
 
@@ -57,9 +57,7 @@ const Index = () => {
 
   return (
     <div>
-      <Head>
-        <title>チャンネル登録者数ランキング</title>
-      </Head>
+      <Meta pageTitle='チャンネル登録者数ランキング' />
       <h1 className={styles.title}>チャンネル登録者数ランキング</h1>
       <h2 className={styles.subtitle}>
         Z世代が選んだ人気Youtubeチャンネルのランキングです！
@@ -100,6 +98,7 @@ const Index = () => {
                       src={`https://www.youtube.com/embed/${channel.latestVideoId}`}
                       frameBorder='0'
                       allowFullScreen
+                      className={styles.youtubePlayer}
                     />
                   )}
                 </Accordion>
