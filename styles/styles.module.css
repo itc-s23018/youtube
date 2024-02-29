@@ -88,7 +88,7 @@
   }
 
    .channelRank {
-    position: absolute;
+    position: static;
     top: -20px;
     left: 50%;
     transform: translateX(-50%);
@@ -110,6 +110,7 @@
     display: inline-block;
     vertical-align: middle;
     text-align: left;
+    margin-left: 0;
   }
 
 
@@ -120,6 +121,7 @@
 
    .numbered-list li {
     text-align: center;
+    flex-direction: column;
   }
 
   .numbered-list li::after {
@@ -132,6 +134,6 @@
     width: 300px;
     height: 169px;
   }
-}
+
 
 
