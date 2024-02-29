@@ -79,8 +79,11 @@
 }
 
 @media screen and (max-width: 768px) {
+  .h1{
+    font-size: 30px;
+  }
   .channelDetails {
-     position: relative;
+    position: relative;
     text-align: center; 
     display: flex;
     flex-direction: column; 
@@ -103,8 +106,10 @@
   .channelIcon {
     width: 80px;
     height: 80px;
-    margin-bottom: 10px;
+    margin: 0 auto 10px;
   }
+
+
 
    .channelInfo {
     display: inline-block;
